@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Attrition Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+ <div class="login">
+
+	<h1>Predict Attrition</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="POST" autocomplete="on">
+
+        <strong>Age</strong> : 
+        <input type="number" name="Age" placeholder="18-80" required min="18" max="80"><br><br>
+
+        <strong>BusinessTravel</strong> : 
+        <input type="radio" name="BusinessTravel" id="Rarely" value="Rarely">Rarely  
+        <input type="radio" name="BusinessTravel" id="Frequently" value="Frequently">Frequently
+        <input type="radio" name="BusinessTravel" id="No Travel"  value="No Travel">No Travel<br><br>
+
+        <strong>DailyRate</strong> : 
+        <input type="number" name="DailyRate" placeholder="100-1600" required min="100" max="1600" size="30"><br><br>
+
+        <strong>Department</strong> :
+        <input type="radio" name="Department" id="Research & Development" value="Research & Development">Research & Development  
+        <input type="radio" name="Department" id="Human Resources" value="Human Resources">Human Resources  
+        <input type="radio" name="Department" id="Sales"  value="Sales">Sales<br><br>
+
+        <strong>DistanceFromHome</strong> : 
+        <input type="number" name="DistanceFromHome" placeholder="1-29" required min="1" max="29"><br><br>
+
+        <strong>Education</strong> : 
+        <input type="number" name="Education" placeholder="1-5" required min="1" max="5"><br><br>
+
+        <strong>EducationField</strong> : 
+        <input type="radio" name="EducationField" id="Life Sciences" value="Life Sciences">Life Sciences 
+        <input type="radio" name="EducationField" id="Medical" value="Medical">Medical  
+        <input type="radio" name="EducationField" id="Marketing"  value="Marketing">Marketing  
+        <input type="radio" name="EducationField" id="Technical Degree"  value="Technical Degree">Technical Degree  
+        <input type="radio" name="EducationField" id="Human Resources"  value="Human Resources">Human Resources  
+        <input type="radio" name="EducationField" id="Other"  value="Other">Other  <br><br>
+
+        <strong>EnvironmentSatisfaction</strong> : 
+        <input type="number" name="EnvironmentSatisfaction" placeholder="1-4" required min="1" max="4"><br><br>
+
+        <strong>Gender</strong> : 
+        <input type="radio" name="Gender" id="Male" value="Male">Male  
+        <input type="radio" name="Gender" id="Female" value="Female">Female<br><br>
+
+        <strong>HourlyRate</strong> : 
+        <input type="number" name="HourlyRate" placeholder="30-100" required min="30" max="100"><br><br>
+
+        <strong>JobInvolvement</strong> : 
+        <input type="number" name="JobInvolvement" placeholder="1-4" required min="1" max="4"><br><br>
+
+        <strong>JobLevel</strong> : 
+        <input type="number" name="JobLevel" placeholder="1-5" required min="1" max="5"><br><br>
+
+        <strong>JobRole</strong> : 
+        <input type="radio" name="JobRole" id="Sales Executive" value="Sales Executives">Sales Executive  
+        <input type="radio" name="JobRole" id="Research Scientist" value="Research Scientist">Research Scientist  
+        <input type="radio" name="JobRole" id="Laboratory Technician"  value="Laboratory Technician">Laboratory Technician  
+        <input type="radio" name="JobRole" id="Manufacturing Director"  value="Manufacturing Director">Manufacturing Director 
+        <input type="radio" name="JobRole" id="Healthcare Representative"  value="Healthcare Representative">Healthcare Representative  
+        <input type="radio" name="JobRole" id="Manager" value="Manager">Manager  
+        <input type="radio" name="JobRole" id="Sales Representative" value="Sales Representative">Sales Representative  
+        <input type="radio" name="JobRole" id="Research Director" value="Research Director">Research Director  
+        <input type="radio" name="JobRole" id="Human Resource" value="Human Resources">Human Resources  <br><br>
+
+        <strong>JobSatisfaction</strong> :
+        <input type="number" name="JobSatisfaction" placeholder="1-4" required min="1" max="4"><br><br>
+
+        <strong>MaritalStatus</strong> : 
+        <input type="radio" name="MaritalStatus" id="Married" value="Married">Married  
+        <input type="radio" name="MaritalStatus" id="Single" value="Single">Single  
+        <input type="radio" name="MaritalStatus" id="Divorced" value="Divorced">Divorced<br><br>
+
+        <strong>MonthlyIncome</strong> : 
+        <input type="number" name="MonthlyIncome" placeholder="1000-20000" required min="1000" max="20000" size="30">  (1000-20000)<br><br>
+
+        
+        
+        
+        <label for="NumCompaniesWorked">NumCompaniesWorked</label>
+        <input type="number" id="NumCompaniesWorked" name="NumCompaniesWorked" placeholder="0-9" required min="0" max="9">
+
+        <strong>OverTime</strong> : 
+        <input type="radio" name="OverTime" id="Yes" value="Yes">Yes 
+        <input type="radio" name="OverTime" id="No" value="No">No<br><br>
+        
+        <strong>PerformanceRating</strong> : 
+        <input type="number" name="PerformanceRating" placeholder="1-4" required min="1" max="4"><br><br>
+
+
+        <strong>PercentSalaryHike</strong> : 
+        <input type="number" name="PercentSalaryHike" placeholder="1-100" required min="1" max="100"><br><br>
+
+        <strong>RelationshipSatisfaction</strong> : 
+        <input type="number" name="RelationshipSatisfaction" placeholder="1-4" required min="1" max="4"><br><br>
+
+        <strong>StockOptionLevel</strong> : 
+        <input type="number" name="StockOptionLevel" placeholder="0-3" required min="0" max="3"><br><br>
+
+        <strong>TotalWorkingYears</strong> : 
+        <input type="number" name="TotalWorkingYears" placeholder="0-40" required min="0" max="40"><br><br>
+
+        <strong>TrainingTimesLastYear</strong> : 
+        <input type="number" name="TrainingTimesLastYear" placeholder="0-6" required min="0" max="6"><br><br>
+
+        <strong>WorkLifeBalance</strong> : 
+        <input type="number" name="WorkLifeBalance" placeholder="1-4" required min="1" max="4"><br><br>
+
+        <strong>YearsAtCompany</strong> : 
+        <input type="number" name="YearsAtCompany" placeholder="0-40" required min="0" max="40"><br><br>
+
+        <strong>YearsInCurrentRole</strong> : 
+        <input type="number" name="YearsInCurrentRole" placeholder="0-18" required min="0" max="18"><br><br>
+
+        <strong>YearsSinceLastPromotion</strong> : 
+        <input type="number" name="YearsSinceLastPromotion" placeholder="0-15" required min="0" max="15"><br><br>
+
+        <strong>YearsWithCurrManager</strong> : 
+        <input type="number" name="YearsWithCurrManager" placeholder="0-17" required min="0" max="17"><br><br>
+
+        <br><button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+     <h1>{{ prediction_text }}</h1>
+
+ </div>
+
+
+</body>
+</html>
